@@ -60,12 +60,12 @@ namespace Payroll_AnnenkovaNM
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append("Emp#: ").Append(empid).Append("  ");
-            builder.Append(name).Append("  ");
-            builder.Append(address).Append("  ");
-            builder.Append("Paid").Append(classification).Append("  ");
+            builder.Append("Emp#: ").Append(empid).Append(" ");
+            builder.Append(name).Append(" ");
+            builder.Append(address).Append(" ");
+            builder.Append("Paid").Append(classification).Append(" ");
             builder.Append(schedule);
-            builder.Append(" by ").Append(method);
+            builder.Append("by ").Append(method);
             
             return builder.ToString();
         }

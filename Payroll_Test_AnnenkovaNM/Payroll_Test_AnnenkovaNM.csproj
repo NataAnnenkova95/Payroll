@@ -52,7 +52,6 @@
   <ItemGroup>
     <Compile Include="Payroll_Test_AnnenkovaNM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestEmployeeToString.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Payroll_AnnenkovaNM\Payroll_AnnenkovaNM.csproj">

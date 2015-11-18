@@ -40,6 +40,56 @@ namespace Payroll_Test_AnnenkovaNM
             PaymentMethod pm = e.Method;
             Assert.IsTrue(pm is HoldMethod);
         }
+        [TestMethod]
+        public void AddHourlyEmployee()
+        {
+            int empid = 1;
+            AddHourlyEmployee t = new AddHourlyEmployee(empid, "Natasha", "Slancy", 265);
+            t.Execute();
+            Employee e = PayrollDatabase.GetEmployee(empid);
+            Assert.AreEqual("Natasha", e.Name);
+            PaymentClassification pc = e.Classification;
+            Assert.IsTrue(pc is HourlyClassification);
+            HourlyClassification sc = pc as HourlyClassification;
+            Assert.AreEqual(265, sc.Hourly, .001);
+            PaymentSchedule ps = e.Schedule;
+            Assert.IsTrue(ps is WeeklySchedule);
+            PaymentMethod pm = e.Method;
+            Assert.IsTrue(pm is HoldMethod);
+        }
+        [TestMethod]
+        public void AddCommissionedEmployee()
+        {
+            int empid = 1;
+            AddCommissionedEmployee t = new AddCommissionedEmployee(empid, "Dasha", "Slancy", 265, 123.804);
+            t.Execute();
+            Employee e = PayrollDatabase.GetEmployee(empid);
+            Assert.AreEqual("Dasha", e.Name);
+            PaymentClassification pc = e.Classification;
+            Assert.IsTrue(pc is CommissionedClassification);
+            CommissionedClassification sc = pc as CommissionedClassification;
+            Assert.AreEqual(265, sc.Commission, .001);
+            Assert.AreEqual(123.804, sc.Salary, .001);
+            PaymentSchedule ps = e.Schedule;
+            Assert.IsTrue(ps is BiweeklySchedule);
+            PaymentMethod pm = e.Method;
+            Assert.IsTrue(pm is HoldMethod);
+        }
+
+        [TestMethod]
+        public void DeleteEmployee()
+        {
+            int empid = 4;
+            AddCommissionedEmployee t = new AddCommissionedEmployee(empid, "Dasha", "Slancy", 265, 123.804);
+            t.Execute();
+            Employee e = PayrollDatabase.GetEmployee(empid);
+            Assert.IsNotNull(e);
+            DeleteEmployeeTransaction dt = new DeleteEmployeeTransaction(empid);
+            dt.Execute();
+            e = PayrollDatabase.GetEmployee(empid);
+            Assert.IsNull(e);
+        }
+
 
     }
 }

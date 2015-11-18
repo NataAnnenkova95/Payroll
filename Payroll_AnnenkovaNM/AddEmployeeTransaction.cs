@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Payroll_AnnenkovaNM
 {
-    public abstract class AddEmployeeTransaction
+    public abstract class AddEmployeeTransaction : Transaction
     {
         private readonly int empid;
         private readonly string name;
